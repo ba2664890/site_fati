@@ -24,34 +24,6 @@ const ACCENTS = [
   { accentColor: '#0D7A74', avatarBg: '#20a19a' },
 ]
 
-const fallbackTeam: TeamMember[] = [
-  {
-    id: '1',
-    name: 'Mouhammadou DIA',
-    initials: 'MD',
-    role: 'Chief Executive Officer',
-    bio: "Expert en stratégie data et transformation digitale avec plus de 10 ans d'expérience dans le conseil international sur les marchés africains et européens.",
-    tagline: "« L'IA doit d'abord servir ceux qui en ont le plus besoin. »",
-    skills: 'Stratégie Data,Conseil International,Transformation Digitale,Business Dev',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    photo: '',
-    order: 1,
-  },
-  {
-    id: '2',
-    name: 'Abdou BA',
-    initials: 'AB',
-    role: 'Chief Technology Officer',
-    bio: "Chercheur en IA et ingénieur ML, spécialiste des architectures distribuées et du traitement automatique du langage. Contributeur open-source actif.",
-    tagline: '« La puissance du NLP est encore sous-exploitée sur le continent. »',
-    skills: 'Machine Learning,NLP / LLM,MLOps,Architecture Distribuée',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    photo: '',
-    order: 2,
-  },
-]
 
 export function Team() {
   const { data } = useQuery({
@@ -63,7 +35,7 @@ export function Team() {
     },
   })
 
-  const team = data && data.length > 0 ? data : fallbackTeam
+  const team = data || []
 
   return (
     <section className="bg-[#F0F4F5] py-28 px-4 md:px-16" id="equipe">

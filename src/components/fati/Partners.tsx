@@ -14,32 +14,6 @@ interface Partner {
   order: number
 }
 
-const fallbackPartners: Partner[] = [
-  {
-    id: '1', name: 'Ministère du Numérique — Sénégal', logo: '', website: 'https://numerique.gouv.sn',
-    category: 'Institutionnel', description: "Partenaire stratégique pour les projets de transformation numérique des services publics sénégalais.", order: 1,
-  },
-  {
-    id: '2', name: 'Université Cheikh Anta Diop', logo: '', website: 'https://ucad.sn',
-    category: 'Académique', description: "Collaboration sur la recherche en IA appliquée aux problématiques africaines et formation des ingénieurs.", order: 2,
-  },
-  {
-    id: '3', name: 'Orange Digital Center', logo: '', website: 'https://orangedigitalcenters.com',
-    category: 'Technologie', description: "Accélérateur partenaire pour les startups tech africaines portées par l'intelligence artificielle.", order: 3,
-  },
-  {
-    id: '4', name: 'Africa Tech Alliance', logo: '', website: 'https://africatechalliance.org',
-    category: 'Écosystème', description: "Réseau panafricain de collaboration technologique pour accélérer l'innovation sur le continent.", order: 4,
-  },
-  {
-    id: '5', name: 'AWS Activate Africa', logo: '', website: 'https://aws.amazon.com/activate',
-    category: 'Cloud & Infra', description: "Partenaire cloud privilégié offrant des crédits et un accompagnement technique pour nos solutions IA.", order: 5,
-  },
-  {
-    id: '6', name: 'GIZ Sénégal', logo: '', website: 'https://giz.de',
-    category: 'Institutionnel', description: "Coopération technique et financement de projets à impact social dans les domaines de l'éducation et la santé.", order: 6,
-  },
-]
 
 const categoryConfig: Record<string, { icon: React.FC<{ size?: number; className?: string }>, color: string, bg: string }> = {
   'Institutionnel': { icon: Building2,      color: '#1A9E97', bg: '#1A9E9712' },
@@ -61,7 +35,7 @@ export function Partners() {
     },
   })
 
-  const partners = data && data.length > 0 ? data : fallbackPartners
+  const partners = data || []
 
   return (
     <section className="bg-white py-28 px-4 md:px-16 overflow-hidden" id="partenaires">

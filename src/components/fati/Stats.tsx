@@ -11,12 +11,6 @@ interface Stat {
   order: number
 }
 
-const fallbackStats: Stat[] = [
-  { id: '1', value: '5', label: 'Projets Majeurs', order: 1 },
-  { id: '2', value: '4', label: 'Secteurs Clés', order: 2 },
-  { id: '3', value: '2', label: 'Fondateurs Experts', order: 3 },
-  { id: '4', value: '1', label: 'Vision Unique', order: 4 },
-]
 
 const containerVariants = {
   hidden: {},
@@ -51,7 +45,7 @@ export function Stats() {
     },
   })
 
-  const stats = data && data.length > 0 ? data : fallbackStats
+  const stats = data || []
 
   return (
     <section className="bg-[#20a19a] text-white py-20 overflow-hidden">

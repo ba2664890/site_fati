@@ -17,75 +17,6 @@ interface Project {
   order: number
 }
 
-const fallbackProjects: Project[] = [
-  {
-    id: '1',
-    title: 'Sunu Souba',
-    slug: 'sunu-souba',
-    tag: 'Emploi · IA',
-    description: 'Système intelligent de prédiction et de gestion des stocks pharmaceutiques en zone rurale.',
-    details: "Optimisation de la chaîne d'approvisionnement via des algorithmes de machine learning pour réduire les ruptures de stock de 40%.",
-    techStack: 'Python,React,FastAPI',
-    features: 'Analyse prédictive de la demande,Dashboard temps réel pour les pharmaciens',
-    order: 1,
-  },
-  {
-    id: '2',
-    title: 'CDC Foncier',
-    slug: 'cdc-foncier',
-    tag: 'Gouvernement · Blockchain',
-    description: 'Plateforme de gestion foncière sécurisée par IA et registres distribués.',
-    details: "Modernisation du cadastre national par la numérisation intelligente et l'immuabilité des titres fonciers.",
-    techStack: 'Ethereum,OCR IA',
-    features: 'Sécurisation contre la falsification,Extraction automatique de données',
-    order: 2,
-  },
-  {
-    id: '3',
-    title: 'SenMobAI',
-    slug: 'senmobai',
-    tag: 'Mobilité · Big Data',
-    description: "Analyse de la mobilité urbaine à Dakar pour l'optimisation des transports publics.",
-    details: 'Exploitation des données GPS et mobiles pour cartographier les flux de population en temps réel.',
-    techStack: 'Spark,GeoJSON',
-    features: 'Réduction du temps de trajet moyen,Planification urbaine intelligente',
-    order: 3,
-  },
-  {
-    id: '4',
-    title: 'BOCS',
-    slug: 'bocs',
-    tag: 'Santé · Éducation · GIS',
-    description: "Système d'information géographique pour le pilotage des politiques sociales.",
-    details: "Centralisation des données d'accès aux services de base pour une meilleure répartition des ressources.",
-    techStack: 'PostGIS,D3.js',
-    features: 'Mapping interactif des besoins,Aide à la décision stratégique',
-    order: 4,
-  },
-  {
-    id: '5',
-    title: 'AgroTransform AI',
-    slug: 'agrotransform-ai',
-    tag: 'Agriculture · IA Mobile',
-    description: "Optimisation des rendements agricoles via l'analyse satellite multispectrale au Sénégal.",
-    details: 'Détection précoce des maladies des cultures et recommandation de fertilisation précise.',
-    techStack: 'PyTorch,AWS,TensorFlow',
-    features: 'Analyse satellite hebdomadaire,Alertes par SMS/App mobile',
-    order: 5,
-  },
-  {
-    id: '6',
-    title: 'EcoWatt',
-    slug: 'ecowatt',
-    tag: 'Énergie · IoT · ML',
-    description: 'Monitoring énergétique industriel intelligent pour la réduction de l\'empreinte carbone.',
-    details: 'Analyse des pics de consommation et maintenance prédictive des équipements lourds.',
-    techStack: 'IoT Edge,Keras',
-    features: "Économie d'énergie de 15%,Détection d'anomalies réseau",
-    order: 6,
-  },
-]
-
 
 
 function FlipCard({ project, index }: { project: Project; index: number }) {
@@ -187,7 +118,7 @@ export function Projects() {
     },
   })
 
-  const projects = data && data.length > 0 ? data : fallbackProjects
+  const projects = data || []
 
   return (
     <section className="bg-[#F0F4F5] text-[#0a0f10] py-20 px-4 md:px-16" id="projets">
