@@ -86,41 +86,27 @@ const fallbackProjects: Project[] = [
   },
 ]
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
 
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 30 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 85,
-      damping: 15,
-    },
-  },
-}
 
-function FlipCard({ project }: { project: Project }) {
+function FlipCard({ project, index }: { project: Project; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false)
   const techs = project.techStack.split(',')
   const features = project.features.split(',')
 
   return (
     <motion.div
-      variants={cardVariants}
-      whileHover={{ 
+      initial={{ opacity: 0, y: 40, scale: 0.93 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{
+        delay: index * 0.08,
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      whileHover={{
         y: -8,
         scale: 1.02,
-        transition: { duration: 0.3 }
+        transition: { duration: 0.25 },
       }}
       className="perspective h-[400px]"
     >
@@ -219,17 +205,11 @@ export function Projects() {
             Nos Réalisations
           </h2>
         </div>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {projects.map((project) => (
-            <FlipCard key={project.id} project={project} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <FlipCard key={project.id} project={project} index={i} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
