@@ -10,38 +10,19 @@ interface TeamMember {
   initials: string
   role: string
   bio: string
+  tagline?: string
+  skills?: string   // comma-separated from DB
+  linkedin?: string
+  twitter?: string
+  photo?: string
   order: number
 }
 
-/* ── Enriched static data – set photo to a real path when ready ── */
-const enrichedData: Record<string, {
-  photo: string | null
-  tagline: string
-  skills: string[]
-  linkedin: string
-  twitter: string
-  accentColor: string
-  avatarBg: string
-}> = {
-  '1': {
-    photo: null, // → set to '/team/mouhammadou.jpg' when ready
-    tagline: '« L\'IA doit d\'abord servir ceux qui en ont le plus besoin. »',
-    skills: ['Stratégie Data', 'Conseil International', 'Transformation Digitale', 'Business Dev'],
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    accentColor: '#1A9E97',
-    avatarBg: '#1C3547',
-  },
-  '2': {
-    photo: null, // → set to '/team/abdou.jpg' when ready
-    tagline: '« La puissance du NLP est encore sous-exploitée sur le continent. »',
-    skills: ['Machine Learning', 'NLP / LLM', 'MLOps', 'Architecture Distribuée'],
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    accentColor: '#0D7A74',
-    avatarBg: '#20a19a',
-  },
-}
+/* Visual accent per member index (immutable, not DB-driven) */
+const ACCENTS = [
+  { accentColor: '#1A9E97', avatarBg: '#1C3547' },
+  { accentColor: '#0D7A74', avatarBg: '#20a19a' },
+]
 
 const fallbackTeam: TeamMember[] = [
   {
@@ -50,6 +31,11 @@ const fallbackTeam: TeamMember[] = [
     initials: 'MD',
     role: 'Chief Executive Officer',
     bio: "Expert en stratégie data et transformation digitale avec plus de 10 ans d'expérience dans le conseil international sur les marchés africains et européens.",
+    tagline: "« L'IA doit d'abord servir ceux qui en ont le plus besoin. »",
+    skills: 'Stratégie Data,Conseil International,Transformation Digitale,Business Dev',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    photo: '',
     order: 1,
   },
   {
@@ -58,6 +44,11 @@ const fallbackTeam: TeamMember[] = [
     initials: 'AB',
     role: 'Chief Technology Officer',
     bio: "Chercheur en IA et ingénieur ML, spécialiste des architectures distribuées et du traitement automatique du langage. Contributeur open-source actif.",
+    tagline: '« La puissance du NLP est encore sous-exploitée sur le continent. »',
+    skills: 'Machine Learning,NLP / LLM,MLOps,Architecture Distribuée',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    photo: '',
     order: 2,
   },
 ]
@@ -109,7 +100,12 @@ export function Team() {
         {/* ── Cards ── */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
           {team.map((member, i) => {
-            const extra = enrichedData[member.id] ?? enrichedData['1']
+            const accent = ACCENTS[i % ACCENTS.length]
+            const skillList = (member.skills ?? '').split(',').filter(Boolean)
+            const photo = member.photo ?? ''
+            const tagline = member.tagline ?? ''
+            const linkedin = member.linkedin ?? '#'
+            const twitter = member.twitter ?? '#'
             return (
               <motion.div
                 key={member.id}
@@ -119,7 +115,7 @@ export function Team() {
                 transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{
                   y: -6,
-                  boxShadow: '0 24px 48px -12px rgba(26,158,151,0.18)',
+                  boxShadow: `0 24px 48px -12px ${accent.accentColor}28`,
                   transition: { duration: 0.3 },
                 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-lg border border-[#1A9E97]/8"
@@ -127,19 +123,19 @@ export function Team() {
                 {/* Top accent bar */}
                 <div
                   className="h-1"
-                  style={{ background: `linear-gradient(90deg, ${extra.accentColor}, transparent)` }}
+                  style={{ background: `linear-gradient(90deg, ${accent.accentColor}, transparent)` }}
                 />
 
                 {/* Avatar zone — soft gradient header */}
                 <div
                   className="relative h-48 flex items-center justify-center"
                   style={{
-                    background: `linear-gradient(135deg, ${extra.avatarBg}20 0%, #F0F4F5 100%)`,
+                    background: `linear-gradient(135deg, ${accent.avatarBg}20 0%, #F0F4F5 100%)`,
                   }}
                 >
-                  {extra.photo ? (
+                  {photo ? (
                     <img
-                      src={extra.photo}
+                      src={photo}
                       alt={member.name}
                       className="w-full h-full object-cover object-top"
                     />
@@ -150,11 +146,11 @@ export function Team() {
                         transition={{ type: 'spring', stiffness: 200 }}
                         className="w-24 h-24 rounded-full flex items-center justify-center text-white"
                         style={{
-                          background: `linear-gradient(135deg, ${extra.avatarBg}, ${extra.accentColor})`,
+                          background: `linear-gradient(135deg, ${accent.avatarBg}, ${accent.accentColor})`,
                           fontFamily: 'var(--font-syne)',
                           fontSize: '36px',
                           fontWeight: 800,
-                          boxShadow: `0 10px 28px ${extra.accentColor}40`,
+                          boxShadow: `0 10px 28px ${accent.accentColor}40`,
                         }}
                       >
                         {member.initials}
@@ -186,7 +182,7 @@ export function Team() {
                         fontFamily: 'var(--font-space-mono)',
                         fontSize: '11px',
                         fontWeight: 700,
-                        color: extra.accentColor,
+                        color: accent.accentColor,
                       }}
                     >
                       {member.role}
@@ -197,16 +193,16 @@ export function Team() {
                   <div
                     className="flex gap-3 mb-5 p-4 rounded-xl border-l-4"
                     style={{
-                      borderLeftColor: extra.accentColor,
-                      background: `${extra.accentColor}08`,
+                      borderLeftColor: accent.accentColor,
+                      background: `${accent.accentColor}08`,
                     }}
                   >
-                    <Quote size={16} className="flex-shrink-0 mt-0.5" style={{ color: extra.accentColor }} />
+                    <Quote size={16} className="flex-shrink-0 mt-0.5" style={{ color: accent.accentColor }} />
                     <p
                       className="text-[#0a0f10]/65 italic leading-relaxed"
                       style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px' }}
                     >
-                      {extra.tagline}
+                      {tagline}
                     </p>
                   </div>
 
@@ -220,15 +216,15 @@ export function Team() {
 
                   {/* Skill badges */}
                   <div className="flex flex-wrap gap-2 mb-7">
-                    {extra.skills.map((skill) => (
+                    {skillList.map((skill) => (
                       <span
                         key={skill}
                         className="px-3 py-1 rounded-full text-[11px] font-semibold border"
                         style={{
                           fontFamily: 'var(--font-space-mono)',
-                          color: extra.accentColor,
-                          borderColor: `${extra.accentColor}35`,
-                          background: `${extra.accentColor}0d`,
+                          color: accent.accentColor,
+                          borderColor: `${accent.accentColor}35`,
+                          background: `${accent.accentColor}0d`,
                         }}
                       >
                         {skill}
@@ -239,7 +235,7 @@ export function Team() {
                   {/* Social / CTA row */}
                   <div className="flex items-center gap-2 pt-5 border-t border-[#1A9E97]/10">
                     <a
-                      href={extra.linkedin}
+                      href={linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#0a0f10]/10 text-[#0a0f10]/50 hover:text-[#0a0f10] hover:border-[#1A9E97]/30 hover:bg-[#1A9E97]/5 transition-all duration-200"
@@ -249,7 +245,7 @@ export function Team() {
                       LinkedIn
                     </a>
                     <a
-                      href={extra.twitter}
+                      href={twitter}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#0a0f10]/10 text-[#0a0f10]/50 hover:text-[#0a0f10] hover:border-[#1A9E97]/30 hover:bg-[#1A9E97]/5 transition-all duration-200"
@@ -264,8 +260,8 @@ export function Team() {
                       style={{
                         fontFamily: 'var(--font-space-mono)',
                         fontSize: '11px',
-                        background: extra.accentColor,
-                        boxShadow: `0 4px 14px ${extra.accentColor}40`,
+                        background: accent.accentColor,
+                        boxShadow: `0 4px 14px ${accent.accentColor}40`,
                       }}
                     >
                       <Globe size={13} />

@@ -45,9 +45,26 @@ model TeamMember {
   initials  String
   role      String
   bio       String
+  tagline   String   @default("")
+  skills    String   @default("") // comma-separated
+  linkedin  String   @default("")
+  twitter   String   @default("")
+  photo     String   @default("")
   order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Partner {
+  id          String   @id @default(cuid())
+  name        String
+  logo        String   @default("") // path in /public/partners/
+  website     String   @default("")
+  category    String   @default("") // ex: Institutionnel, Technologie, Académique
+  description String   @default("")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Stat {
