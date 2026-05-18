@@ -1,6 +1,7 @@
 'use client'
 
 import { Rocket, Brain, GraduationCap, BarChart3 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const services = [
   {
@@ -29,6 +30,28 @@ const services = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 15,
+    },
+  },
+}
+
 export function Services() {
   return (
     <section className="bg-[#0a0f10] py-20 px-4 md:px-16" id="services">
@@ -47,15 +70,28 @@ export function Services() {
             Nos Domaines d&apos;Expertise
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {services.map((service) => (
-            <div
+            <motion.div
               key={service.title}
-              className="bg-[#181c1d] border border-[#1A9E97]/10 p-12 rounded-xl hover:bg-[#262b2c] transition-all group"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.03,
+                borderColor: 'rgba(103, 216, 208, 0.4)',
+                boxShadow: '0 15px 30px -10px rgba(26, 158, 151, 0.25)' 
+              }}
+              className="bg-[#181c1d] border border-[#1A9E97]/10 p-12 rounded-xl hover:bg-[#262b2c] transition-all duration-300 group cursor-pointer"
             >
-              <service.icon className="text-[#1A9E97] w-12 h-12 mb-6 group-hover:scale-110 transition-transform" />
+              <service.icon className="text-[#1A9E97] w-12 h-12 mb-6 group-hover:scale-110 group-hover:text-[#67d8d0] transition-all duration-300" />
               <h3
-                className="mb-6 text-[#dfe3e4]"
+                className="mb-6 text-[#dfe3e4] group-hover:text-[#67d8d0] transition-colors"
                 style={{ fontFamily: 'var(--font-syne)', fontSize: '24px', fontWeight: 700, lineHeight: '32px' }}
               >
                 {service.title}
@@ -66,9 +102,9 @@ export function Services() {
               >
                 {service.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

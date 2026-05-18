@@ -1,37 +1,48 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 
-export function SectionReveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+interface SectionRevealProps {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+  direction?: 'up' | 'down' | 'left' | 'right'
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+export function SectionReveal({
+  children,
+  className = '',
+  delay = 0.05,
+  direction = 'up',
+}: SectionRevealProps) {
+  const directions = {
+    up: { y: 50, x: 0 },
+    down: { y: -50, x: 0 },
+    left: { x: 50, y: 0 },
+    right: { x: -50, y: 0 },
+  }
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      } ${className}`}
+    <motion.div
+      initial={{ 
+        opacity: 0, 
+        x: directions[direction].x, 
+        y: directions[direction].y 
+      }}
+      whileInView={{ 
+        opacity: 1, 
+        x: 0, 
+        y: 0 
+      }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ 
+        duration: 0.9, 
+        delay: delay, 
+        ease: [0.16, 1, 0.3, 1] // Premium smooth easeOutExpo cubic bezier
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }

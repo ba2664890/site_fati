@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { CheckCircle } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface Project {
   id: string
@@ -85,32 +86,63 @@ const fallbackProjects: Project[] = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 85,
+      damping: 15,
+    },
+  },
+}
+
 function FlipCard({ project }: { project: Project }) {
   const [isFlipped, setIsFlipped] = useState(false)
   const techs = project.techStack.split(',')
   const features = project.features.split(',')
 
   return (
-    <div className="perspective h-[400px]">
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ 
+        y: -8,
+        scale: 1.02,
+        transition: { duration: 0.3 }
+      }}
+      className="perspective h-[400px]"
+    >
       <div
         className={`card-inner w-full h-full ${isFlipped ? 'is-flipped' : ''}`}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         {/* Front */}
-        <div className="card-front bg-white p-8 rounded-2xl shadow-lg border border-black/5 flex flex-col">
+        <div className="card-front bg-white p-8 rounded-2xl shadow-lg border border-black/5 flex flex-col hover:shadow-xl transition-all duration-300">
           <div className="mb-6">
             <span className="bg-[#1A9E97]/10 text-[#1A9E97] px-3 py-1 rounded-full uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', fontWeight: 700 }}>
               {project.tag}
             </span>
           </div>
           <h3
-            className="text-[#0a0f10] mb-6"
+            className="text-[#0a0f10]"
             style={{ fontFamily: 'var(--font-syne)', fontSize: '32px', fontWeight: 700, lineHeight: '40px' }}
           >
             {project.title}
           </h3>
           <p
-            className="opacity-70 mb-8 flex-grow"
+            className="opacity-70 mb-8 flex-grow mt-4"
             style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}
           >
             {project.description}
@@ -119,8 +151,8 @@ function FlipCard({ project }: { project: Project }) {
             {techs.map((tech) => (
               <span
                 key={tech}
-                className="bg-[#353a3b]/10 px-3 py-1 rounded"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '14px' }}
+                className="bg-[#353a3b]/10 px-3 py-1 rounded text-[#353a3b]/80"
+                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', fontWeight: 600 }}
               >
                 {tech}
               </span>
@@ -129,7 +161,7 @@ function FlipCard({ project }: { project: Project }) {
         </div>
 
         {/* Back */}
-        <div className="card-back bg-[#1C3547] p-8 rounded-2xl shadow-lg text-[#dfe3e4] flex flex-col">
+        <div className="card-back bg-[#1C3547] p-8 rounded-2xl shadow-lg text-[#dfe3e4] flex flex-col border border-white/5">
           <h3
             className="text-[#67d8d0] mb-6"
             style={{ fontFamily: 'var(--font-syne)', fontSize: '24px', fontWeight: 700, lineHeight: '32px' }}
@@ -155,7 +187,7 @@ function FlipCard({ project }: { project: Project }) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -187,11 +219,17 @@ export function Projects() {
             Nos Réalisations
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {projects.map((project) => (
             <FlipCard key={project.id} project={project} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
