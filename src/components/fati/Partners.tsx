@@ -70,85 +70,97 @@ export function Partners() {
           </p>
         </motion.div>
 
-        {/* ── Partner grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {partners.map((partner, i) => {
-            const cat = categoryConfig[partner.category] ?? DEFAULT_CAT
-            const Icon = cat.icon
-            return (
-              <motion.a
-                key={partner.id}
-                href={partner.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ delay: i * 0.07, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{
-                  y: -6,
-                  boxShadow: `0 20px 40px -12px ${cat.color}28`,
-                  borderColor: `${cat.color}40`,
-                  transition: { duration: 0.25 },
-                }}
-                className="group block bg-[#F8FAFB] rounded-2xl border border-[#0a0f10]/6 p-7 cursor-pointer transition-colors duration-200"
-              >
-                {/* Top row: logo/icon + category badge */}
-                <div className="flex items-start justify-between mb-5">
-                  {partner.logo ? (
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="h-12 object-contain"
-                    />
-                  ) : (
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: cat.bg }}
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 40s linear infinite;
+          }
+          .pause-marquee:hover .animate-marquee {
+            animation-play-state: paused;
+          }
+        `}</style>
+
+        {/* ── Partner Marquee ── */}
+        <div className="relative flex overflow-hidden w-full py-4 pause-marquee">
+          {/* Fading Edges */}
+          <div className="absolute top-0 bottom-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          <div className="flex w-max animate-marquee">
+            {partners.length > 0 && [...partners, ...partners].map((partner, i) => {
+              const cat = categoryConfig[partner.category] ?? DEFAULT_CAT
+              const Icon = cat.icon
+              return (
+                <a
+                  key={`${partner.id}-${i}`}
+                  href={partner.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[300px] md:w-[380px] flex-shrink-0 mx-3 group block bg-[#F8FAFB] rounded-2xl border border-[#0a0f10]/6 p-7 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:bg-white"
+                  style={{
+                    boxShadow: '0 4px 20px -10px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  {/* Top row: logo/icon + category badge */}
+                  <div className="flex items-start justify-between mb-5">
+                    {partner.logo ? (
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-12 object-contain"
+                      />
+                    ) : (
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                        style={{ background: cat.bg }}
+                      >
+                        <Icon size={26} style={{ color: cat.color }} />
+                      </div>
+                    )}
+                    <span
+                      className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border"
+                      style={{
+                        fontFamily: 'var(--font-space-mono)',
+                        color: cat.color,
+                        borderColor: `${cat.color}35`,
+                        background: cat.bg,
+                      }}
                     >
-                      <Icon size={26} style={{ color: cat.color }} />
-                    </div>
-                  )}
-                  <span
-                    className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border"
-                    style={{
-                      fontFamily: 'var(--font-space-mono)',
-                      color: cat.color,
-                      borderColor: `${cat.color}35`,
-                      background: cat.bg,
-                    }}
+                      {partner.category}
+                    </span>
+                  </div>
+
+                  {/* Name */}
+                  <h3
+                    className="text-[#0a0f10] mb-3 leading-snug group-hover:text-[#1A9E97] transition-colors duration-200"
+                    style={{ fontFamily: 'var(--font-syne)', fontSize: '18px', fontWeight: 700 }}
                   >
-                    {partner.category}
-                  </span>
-                </div>
+                    {partner.name}
+                  </h3>
 
-                {/* Name */}
-                <h3
-                  className="text-[#0a0f10] mb-3 leading-snug group-hover:text-[#1A9E97] transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-syne)', fontSize: '18px', fontWeight: 700 }}
-                >
-                  {partner.name}
-                </h3>
+                  {/* Description */}
+                  <p
+                    className="text-[#0a0f10]/55 mb-5 leading-relaxed"
+                    style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', lineHeight: '1.7' }}
+                  >
+                    {partner.description}
+                  </p>
 
-                {/* Description */}
-                <p
-                  className="text-[#0a0f10]/55 mb-5 leading-relaxed"
-                  style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '14px', lineHeight: '1.7' }}
-                >
-                  {partner.description}
-                </p>
-
-                {/* CTA link */}
-                <div
-                  className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-space-mono)', color: cat.color }}
-                >
-                  Voir le site
-                  <ExternalLink size={12} />
-                </div>
-              </motion.a>
-            )
-          })}
+                  {/* CTA link */}
+                  <div
+                    className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest transition-colors duration-200"
+                    style={{ fontFamily: 'var(--font-space-mono)', color: cat.color }}
+                  >
+                    Voir le site
+                    <ExternalLink size={12} />
+                  </div>
+                </a>
+              )
+            })}
+          </div>
         </div>
 
         {/* ── CTA band ── */}
