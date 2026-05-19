@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
 import { Linkedin, Twitter, Globe, Quote } from 'lucide-react'
+import { useState } from 'react'
 
 interface TeamMember {
   id: string
@@ -23,6 +24,63 @@ const ACCENTS = [
   { accentColor: '#1A9E97', avatarBg: '#1C3547' },
   { accentColor: '#0D7A74', avatarBg: '#20a19a' },
 ]
+
+function getImagePosition(name: string) {
+  const normalizedName = name.toLowerCase()
+
+  if (normalizedName.includes('mouhammadou')) return 'center 35%'
+  if (normalizedName.includes('abdou')) return 'center 42%'
+
+  return 'center 38%'
+}
+
+function TeamPhoto({
+  member,
+  accent,
+}: {
+  member: TeamMember
+  accent: { accentColor: string; avatarBg: string }
+}) {
+  const [hasError, setHasError] = useState(false)
+  const photoUrl = member.photo ?? ''
+
+  if (!photoUrl || hasError) {
+    return (
+      <div className="flex flex-col items-center gap-3">
+        <motion.div
+          whileHover={{ scale: 1.07 }}
+          transition={{ type: 'spring', stiffness: 200 }}
+          className="w-24 h-24 rounded-full flex items-center justify-center text-white"
+          style={{
+            background: `linear-gradient(135deg, ${accent.avatarBg}, ${accent.accentColor})`,
+            fontFamily: 'var(--font-syne)',
+            fontSize: '36px',
+            fontWeight: 800,
+            boxShadow: `0 10px 28px ${accent.accentColor}40`,
+          }}
+        >
+          {member.initials}
+        </motion.div>
+        <span
+          className="text-[#0a0f10]/30 text-[10px] uppercase tracking-[0.2em]"
+          style={{ fontFamily: 'var(--font-space-mono)' }}
+        >
+          Photo à venir
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <img
+      src={photoUrl}
+      alt={member.name}
+      onError={() => setHasError(true)}
+      className="w-full h-full object-cover"
+      style={{ objectPosition: getImagePosition(member.name) }}
+    />
+  )
+}
 
 
 export function Team() {
@@ -75,7 +133,6 @@ export function Team() {
           {team.map((member, i) => {
             const accent = ACCENTS[i % ACCENTS.length]
             const skillList = (member.skills ?? '').split(',').filter(Boolean)
-            const photo = member.photo ?? ''
             const tagline = member.tagline ?? ''
             const linkedin = member.linkedin ?? '#'
             const twitter = member.twitter ?? '#'
@@ -101,41 +158,12 @@ export function Team() {
 
                 {/* Avatar zone: soft gradient header */}
                 <div
-                  className="relative h-48 flex items-center justify-center"
+                  className="relative h-64 md:h-72 flex items-center justify-center overflow-hidden"
                   style={{
                     background: `linear-gradient(135deg, ${accent.avatarBg}20 0%, #F0F4F5 100%)`,
                   }}
                 >
-                  {photo ? (
-                    <img
-                      src={photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center gap-3">
-                      <motion.div
-                        whileHover={{ scale: 1.07 }}
-                        transition={{ type: 'spring', stiffness: 200 }}
-                        className="w-24 h-24 rounded-full flex items-center justify-center text-white"
-                        style={{
-                          background: `linear-gradient(135deg, ${accent.avatarBg}, ${accent.accentColor})`,
-                          fontFamily: 'var(--font-syne)',
-                          fontSize: '36px',
-                          fontWeight: 800,
-                          boxShadow: `0 10px 28px ${accent.accentColor}40`,
-                        }}
-                      >
-                        {member.initials}
-                      </motion.div>
-                      <span
-                        className="text-[#0a0f10]/30 text-[10px] uppercase tracking-[0.2em]"
-                        style={{ fontFamily: 'var(--font-space-mono)' }}
-                      >
-                        Photo à venir
-                      </span>
-                    </div>
-                  )}
+                  <TeamPhoto member={member} accent={accent} />
                 </div>
 
                 {/* Body */}
