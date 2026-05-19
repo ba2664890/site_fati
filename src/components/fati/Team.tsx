@@ -38,7 +38,7 @@ function getImageStyle(name: string) {
   if (normalizedName.includes('abdou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 18%',
+      objectPosition: 'center 48%',
     } as const
   }
 
