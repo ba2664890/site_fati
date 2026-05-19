@@ -38,7 +38,7 @@ function getImageStyle(name: string) {
   if (normalizedName.includes('abdou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 40%',
+      objectPosition: 'center 34%',
     } as const
   }
 
@@ -177,7 +177,7 @@ export function Team() {
 
                 {/* Avatar zone: soft gradient header */}
                 <div
-                  className="relative h-64 md:h-72 flex items-center justify-center overflow-hidden"
+                  className="relative h-80 md:h-[420px] flex items-center justify-center overflow-hidden"
                   style={{
                     background: `linear-gradient(135deg, ${accent.avatarBg}20 0%, #F0F4F5 100%)`,
                   }}
