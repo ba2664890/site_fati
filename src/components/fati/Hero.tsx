@@ -124,7 +124,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="inline-flex items-center gap-1.5 px-6 py-2 bg-[#1A9E97]/10 border border-[#1A9E97]/20 rounded-full mb-6 backdrop-blur-md"
         >
-          <span className="text-[20px] animate-pulse">🌍</span>
+          <span className="text-[20px] animate-pulse"></span>
           <span
             className="text-[#1A9E97] uppercase tracking-widest font-bold"
             style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px' }}
