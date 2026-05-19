@@ -201,8 +201,12 @@ export function AdminDashboard({ initialPartners, initialTeam }: { initialPartne
                 <Input id="website" name="website" type="url" defaultValue={selectedPartner?.website || ''} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="logo">Lien vers le logo (optionnel)</Label>
-                <Input id="logo" name="logo" placeholder="/partners/logo.png" defaultValue={selectedPartner?.logo || ''} />
+                <Label htmlFor="logoFile">Logo (Fichier Image)</Label>
+                <Input id="logoFile" name="logoFile" type="file" accept="image/*" />
+                <input type="hidden" name="logo" value={selectedPartner?.logo || ''} />
+                {selectedPartner?.logo && (
+                  <p className="text-xs text-gray-500 mt-1">Image actuelle : {selectedPartner.logo.split('/').pop()}</p>
+                )}
               </div>
               <div className="space-y-2 col-span-2">
                 <Label htmlFor="description">Description courte</Label>
@@ -242,8 +246,12 @@ export function AdminDashboard({ initialPartners, initialTeam }: { initialPartne
                 <Input id="role" name="role" defaultValue={selectedTeamMember?.role || ''} required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="photo">Photo (URL /public/...)</Label>
-                <Input id="photo" name="photo" defaultValue={selectedTeamMember?.photo || ''} />
+                <Label htmlFor="photoFile">Photo (Fichier Image)</Label>
+                <Input id="photoFile" name="photoFile" type="file" accept="image/*" />
+                <input type="hidden" name="photo" value={selectedTeamMember?.photo || ''} />
+                {selectedTeamMember?.photo && (
+                  <p className="text-xs text-gray-500 mt-1">Image actuelle : {selectedTeamMember.photo.split('/').pop()}</p>
+                )}
               </div>
               <div className="space-y-2 col-span-2">
                 <Label htmlFor="bio">Biographie</Label>
