@@ -46,15 +46,20 @@ function TeamPhoto({
 
   if (!photoUrl || hasError) {
     return (
-      <div className="flex flex-col items-center gap-3">
+      <div
+        className="flex h-full w-full flex-col items-center justify-center gap-4"
+        style={{
+          background: `linear-gradient(135deg, ${accent.avatarBg}18 0%, ${accent.accentColor}10 50%, #F0F4F5 100%)`,
+        }}
+      >
         <motion.div
           whileHover={{ scale: 1.07 }}
           transition={{ type: 'spring', stiffness: 200 }}
-          className="w-24 h-24 rounded-full flex items-center justify-center text-white"
+          className="w-28 h-28 rounded-full flex items-center justify-center text-white"
           style={{
             background: `linear-gradient(135deg, ${accent.avatarBg}, ${accent.accentColor})`,
             fontFamily: 'var(--font-syne)',
-            fontSize: '36px',
+            fontSize: '38px',
             fontWeight: 800,
             boxShadow: `0 10px 28px ${accent.accentColor}40`,
           }}
@@ -62,7 +67,7 @@ function TeamPhoto({
           {member.initials}
         </motion.div>
         <span
-          className="text-[#0a0f10]/30 text-[10px] uppercase tracking-[0.2em]"
+          className="text-[#0a0f10]/35 text-[10px] uppercase"
           style={{ fontFamily: 'var(--font-space-mono)' }}
         >
           Photo à venir
