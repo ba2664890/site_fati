@@ -25,13 +25,27 @@ const ACCENTS = [
   { accentColor: '#0D7A74', avatarBg: '#20a19a' },
 ]
 
-function getImagePosition(name: string) {
+function getImageStyle(name: string) {
   const normalizedName = name.toLowerCase()
 
-  if (normalizedName.includes('mouhammadou')) return 'center 35%'
-  if (normalizedName.includes('abdou')) return 'center 42%'
+  if (normalizedName.includes('mouhammadou')) {
+    return {
+      objectFit: 'cover',
+      objectPosition: 'center 12%',
+    } as const
+  }
 
-  return 'center 38%'
+  if (normalizedName.includes('abdou')) {
+    return {
+      objectFit: 'cover',
+      objectPosition: 'center 18%',
+    } as const
+  }
+
+  return {
+    objectFit: 'cover',
+    objectPosition: 'center 24%',
+  } as const
 }
 
 function TeamPhoto({
@@ -81,8 +95,8 @@ function TeamPhoto({
       src={photoUrl}
       alt={member.name}
       onError={() => setHasError(true)}
-      className="w-full h-full object-cover"
-      style={{ objectPosition: getImagePosition(member.name) }}
+      className="w-full h-full"
+      style={getImageStyle(member.name)}
     />
   )
 }
