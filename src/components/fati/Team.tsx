@@ -31,14 +31,14 @@ function getImageStyle(name: string) {
   if (normalizedName.includes('mouhammadou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 6%',
+      objectPosition: 'center 14%',
     } as const
   }
 
   if (normalizedName.includes('abdou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 34%',
+      objectPosition: 'center 30%',
     } as const
   }
 
@@ -124,7 +124,7 @@ export function Team() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <span
             className="inline-block text-[#1A9E97] mb-4 uppercase tracking-widest px-4 py-1.5 rounded-full border border-[#1A9E97]/25 bg-[#1A9E97]/8"
@@ -177,7 +177,7 @@ export function Team() {
 
                 {/* Avatar zone: soft gradient header */}
                 <div
-                  className="relative h-80 md:h-[420px] flex items-center justify-center overflow-hidden"
+                  className="relative h-72 md:h-[340px] flex items-center justify-center overflow-hidden"
                   style={{
                     background: `linear-gradient(135deg, ${accent.avatarBg}20 0%, #F0F4F5 100%)`,
                   }}
