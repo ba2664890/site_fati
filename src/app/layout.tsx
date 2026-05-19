@@ -22,16 +22,15 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "FATI - AI For Africa | Intelligence Souveraine",
+  title: "FATI - AI For Africa | IA, Data et Transformation Digitale",
   description:
-    "FATI propulse la souveraineté technologique du continent par l'intelligence artificielle avancée et l'analyse de données stratégique.",
+    "FATI est une startup panafricaine spécialisée en intelligence artificielle, data et transformation digitale.",
   keywords: [
     "FATI",
     "AI",
     "Africa",
     "Intelligence Artificielle",
     "Data",
-    "Souveraineté Numérique",
     "Transformation Digitale",
     "Sénégal",
   ],
@@ -40,9 +39,9 @@ export const metadata: Metadata = {
     icon: "/logo.jpeg",
   },
   openGraph: {
-    title: "FATI - AI For Africa | Intelligence Souveraine",
+    title: "FATI - AI For Africa | IA, Data et Transformation Digitale",
     description:
-      "Accélérez votre performance avec l'IA et la Data. Solutions IA & Dat pour le continent africain.",
+      "Startup panafricaine spécialisée en intelligence artificielle, data et transformation digitale.",
     url: "https://fati.ai",
     siteName: "FATI",
     type: "website",
@@ -51,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FATI - AI For Africa",
     description:
-      "Accélérez votre performance avec l'IA et la Data",
+      "IA, data et transformation digitale pour des solutions adaptées aux réalités africaines.",
   },
 };
 

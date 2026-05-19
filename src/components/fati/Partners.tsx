@@ -65,8 +65,8 @@ export function Partners() {
             className="text-[#0a0f10]/55 mt-4 max-w-2xl mx-auto"
             style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}
           >
-            FATI s&apos;appuie sur un écosystème d&apos;excellence — institutions publiques, universités, 
-            acteurs tech et partenaires internationaux — pour maximiser son impact en Afrique.
+            FATI s&apos;appuie sur un écosystème d&apos;excellence : institutions publiques, universités, 
+            acteurs tech et partenaires internationaux, pour maximiser son impact en Afrique.
           </p>
         </motion.div>
 

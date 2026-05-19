@@ -84,13 +84,13 @@ export function Contact() {
             <div className="flex items-center gap-6">
               <Mail className="text-[#67d8d0]" size={24} />
               <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}>
-                contact@fati.ai
+                fati.gp.stat@gmail.com
               </span>
             </div>
             <div className="flex items-center gap-6">
               <MapPin className="text-[#67d8d0]" size={24} />
               <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}>
-                Dakar, Sénégal | Paris, France
+                Dakar, Senegal
               </span>
             </div>
           </div>

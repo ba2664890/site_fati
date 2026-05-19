@@ -173,8 +173,8 @@ export function Hero() {
           className="text-[#c3c7cc] mb-12 max-w-2xl mx-auto font-normal"
           style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '18px', lineHeight: '1.75' }}
         >
-          FATI propulse la souveraineté technologique du continent par l&apos;intelligence
-          artificielle avancée et l&apos;analyse de données stratégique.
+          Startup panafricaine spécialisée en intelligence artificielle, data et transformation
+          digitale, au service de solutions innovantes adaptées aux réalités africaines.
         </motion.p>
 
         {/* Call to Actions (CTAs) */}

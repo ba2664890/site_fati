@@ -62,7 +62,7 @@ export function About() {
                 className="text-[#67d8d0] uppercase tracking-widest"
                 style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', fontWeight: 700 }}
               >
-                Africa AI Network — Live
+                Africa AI Network - Live
               </span>
             </div>
           </motion.div>
@@ -85,7 +85,7 @@ export function About() {
                 AI For Africa
               </p>
               <p className="text-white/70 text-[11px] mt-0.5" style={{ fontFamily: 'var(--font-dm-sans)' }}>
-                Souveraineté Numérique
+                Data & IA
               </p>
             </div>
           </motion.div>
@@ -118,7 +118,7 @@ export function About() {
             className="text-[32px] md:text-[40px] mb-6 text-[#0a0f10] leading-tight"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: 700 }}
           >
-            FATI — AI For Africa
+            FATI - AI For Africa
           </motion.h2>
 
           <motion.p
@@ -129,9 +129,10 @@ export function About() {
             className="mb-10 text-[#0a0f10]/70"
             style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '18px', lineHeight: '1.75' }}
           >
-            Nous sommes une entreprise de conseil et d&apos;ingénierie dédiée à l&apos;accélération de
-            l&apos;intelligence artificielle en Afrique. Notre approche fusionne l&apos;excellence
-            technique internationale et une compréhension profonde des enjeux locaux.
+            FATI est une startup panafricaine spécialisée en intelligence artificielle, data et
+            transformation digitale. Notre mission est d&apos;utiliser la puissance des données et des
+            technologies émergentes pour développer des solutions innovantes à fort impact adaptées
+            aux réalités africaines.
           </motion.p>
 
           {/* Mission / Vision cards */}
@@ -139,11 +140,11 @@ export function About() {
             {[
               {
                 title: 'Mission',
-                text: "Démocratiser l'accès aux technologies de pointe pour les institutions africaines.",
+                text: "Utiliser la puissance des données et des technologies émergentes pour créer des solutions à fort impact.",
               },
               {
                 title: 'Vision',
-                text: 'Devenir le leader continental de la souveraineté numérique par les données.',
+                text: 'Développer une transformation digitale adaptée aux réalités africaines.',
               },
             ].map((card, i) => (
               <motion.div

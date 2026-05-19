@@ -65,7 +65,8 @@ export function Team() {
             className="text-[#0a0f10]/55 mt-4 max-w-xl mx-auto"
             style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}
           >
-            Deux experts passionnés, une vision commune : faire de l&apos;IA un levier de souveraineté pour l&apos;Afrique.
+            Deux experts passionnés, une vision commune : faire de l&apos;IA, de la data et du digital
+            des leviers d&apos;impact pour l&apos;Afrique.
           </p>
         </motion.div>
 
@@ -98,7 +99,7 @@ export function Team() {
                   style={{ background: `linear-gradient(90deg, ${accent.accentColor}, transparent)` }}
                 />
 
-                {/* Avatar zone — soft gradient header */}
+                {/* Avatar zone: soft gradient header */}
                 <div
                   className="relative h-48 flex items-center justify-center"
                   style={{

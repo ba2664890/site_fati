@@ -10,7 +10,6 @@ import { Services } from '@/components/fati/Services'
 import { Projects } from '@/components/fati/Projects'
 import { Approach } from '@/components/fati/Approach'
 import { Team } from '@/components/fati/Team'
-import { Partners } from '@/components/fati/Partners'
 import { Contact } from '@/components/fati/Contact'
 import { Footer } from '@/components/fati/Footer'
 import { SectionReveal } from '@/components/fati/SectionReveal'
@@ -58,10 +57,6 @@ export default function Home() {
 
           <SectionReveal>
             <Team />
-          </SectionReveal>
-
-          <SectionReveal>
-            <Partners />
           </SectionReveal>
 
           <SectionReveal>
