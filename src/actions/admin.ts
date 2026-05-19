@@ -6,8 +6,14 @@ import { put } from '@vercel/blob'
 
 async function handleFileUpload(file: File | null, existingUrl: string) {
   if (file && file.size > 0) {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      throw new Error("BLOB_READ_WRITE_TOKEN is not defined in environment variables.");
+    }
     const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
-    const blob = await put(`fati-${Date.now()}-${safeName}`, file, { access: 'public' })
+    const blob = await put(`fati-${Date.now()}-${safeName}`, file, { 
+      access: 'public',
+      token: process.env.BLOB_READ_WRITE_TOKEN 
+    })
     return blob.url
   }
   return existingUrl
