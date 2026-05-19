@@ -6,7 +6,8 @@ import { put } from '@vercel/blob'
 
 async function handleFileUpload(file: File | null, existingUrl: string) {
   if (file && file.size > 0) {
-    const blob = await put(`fati-${Date.now()}-${file.name}`, file, { access: 'public' })
+    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
+    const blob = await put(`fati-${Date.now()}-${safeName}`, file, { access: 'public' })
     return blob.url
   }
   return existingUrl
