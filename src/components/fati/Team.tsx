@@ -31,14 +31,14 @@ function getImageStyle(name: string) {
   if (normalizedName.includes('mouhammadou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 12%',
+      objectPosition: 'center 26%',
     } as const
   }
 
   if (normalizedName.includes('abdou')) {
     return {
       objectFit: 'cover',
-      objectPosition: 'center 48%',
+      objectPosition: 'center 34%',
     } as const
   }
 
