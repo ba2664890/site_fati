@@ -1,12 +1,8 @@
 'use client'
 
-import { Globe } from 'lucide-react'
-
 const navLinks = [
   { href: '#about', label: 'À propos' },
   { href: '#services', label: 'Services' },
-  { href: '#projets', label: 'Projets' },
-  { href: '#equipe', label: 'Équipe' },
 ]
 
 export function Footer() {
