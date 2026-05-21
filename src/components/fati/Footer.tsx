@@ -7,9 +7,9 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#43474c]/20 py-20 px-4 md:px-16" style={{ backgroundColor: '#1C3547' }}>
+    <footer className="border-t border-[#43474c]/20 py-14 md:py-20 px-4 sm:px-6 md:px-16" style={{ backgroundColor: '#1C3547' }}>
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 mb-12 md:mb-20">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-6">
               <img
@@ -81,7 +81,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-[#43474c]/10 pt-12 text-center">
+        <div className="border-t border-[#43474c]/10 pt-8 md:pt-12 text-center">
           <p
             className="text-[#c3c7cc] opacity-60"
             style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}

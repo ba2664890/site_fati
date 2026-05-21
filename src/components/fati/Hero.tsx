@@ -50,7 +50,7 @@ export function Hero() {
   }, [])
 
   return (
-    <header className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden px-4 md:px-16 bg-[#0f1415]">
+    <header className="relative min-h-[100svh] flex items-center justify-center pt-24 pb-12 overflow-hidden px-4 sm:px-6 md:px-16 bg-[#0f1415]">
       {/* Background Layers */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
         {/* Custom AI network background image */}
@@ -87,7 +87,7 @@ export function Hero() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-[#1A9E97]/20 rounded-full blur-[120px]"
+          className="absolute top-1/4 left-1/4 w-[220px] h-[220px] md:w-[350px] md:h-[350px] bg-[#1A9E97]/20 rounded-full blur-[90px] md:blur-[120px]"
         />
 
         {/* Slow organic floating teal blob */}
@@ -102,7 +102,7 @@ export function Hero() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#67d8d0]/15 rounded-full blur-[140px]"
+          className="absolute bottom-1/4 right-1/4 w-[240px] h-[240px] md:w-[400px] md:h-[400px] bg-[#67d8d0]/15 rounded-full blur-[100px] md:blur-[140px]"
         />
 
         {/* Tech Grid Overlay */}
@@ -116,13 +116,13 @@ export function Hero() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 text-center max-w-4xl">
+      <div className="relative z-10 text-center w-full max-w-4xl">
         {/* Dynamic Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="inline-flex items-center gap-1.5 px-6 py-2 bg-[#1A9E97]/10 border border-[#1A9E97]/20 rounded-full mb-6 backdrop-blur-md"
+          className="inline-flex items-center gap-1.5 px-4 sm:px-6 py-2 bg-[#1A9E97]/10 border border-[#1A9E97]/20 rounded-full mb-5 md:mb-6 backdrop-blur-md"
         >
           <span className="text-[20px] animate-pulse"></span>
           <span
@@ -138,11 +138,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="text-[42px] md:text-[68px] text-[#dfe3e4] mb-3 md:mb-6 leading-tight tracking-tight"
+          className="text-[34px] sm:text-[42px] md:text-[68px] text-[#dfe3e4] mb-3 md:mb-6 leading-tight tracking-tight"
           style={{
             fontFamily: 'var(--font-syne)',
             fontWeight: 800,
-            letterSpacing: '-0.02em',
+            letterSpacing: '0',
             lineHeight: '1.08',
           }}
         >
@@ -154,10 +154,10 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="h-12 mb-6"
+          className="min-h-12 mb-5 md:mb-6"
         >
           <p
-            className="text-[#67d8d0] text-[18px] md:text-[25px] font-semibold tracking-wide"
+            className="text-[#67d8d0] text-[16px] sm:text-[18px] md:text-[25px] font-semibold tracking-wide"
             style={{ fontFamily: 'var(--font-space-mono)' }}
           >
             {displayText}
@@ -170,8 +170,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-          className="text-[#c3c7cc] mb-12 max-w-2xl mx-auto font-normal"
-          style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '18px', lineHeight: '1.75' }}
+          className="text-[#c3c7cc] mb-8 md:mb-12 max-w-2xl mx-auto font-normal px-1"
+          style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(16px, 4vw, 18px)', lineHeight: '1.65' }}
         >
           Startup panafricaine spécialisée en intelligence artificielle, data et transformation
           digitale, au service de solutions innovantes adaptées aux réalités africaines.
@@ -182,7 +182,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-          className="flex flex-col md:flex-row gap-6 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center"
         >
           <motion.a
             href="#services"
@@ -192,7 +192,7 @@ export function Hero() {
               boxShadow: '0 0 25px rgba(103, 216, 208, 0.55)',
             }}
             whileTap={{ scale: 0.95 }}
-            className="w-full md:w-auto bg-[#1A9E97] text-white px-20 py-6 rounded-xl teal-glow transition-all duration-300 text-center font-bold"
+            className="w-full sm:w-auto bg-[#1A9E97] text-white px-5 sm:px-8 md:px-20 py-4 md:py-6 rounded-xl teal-glow transition-all duration-300 text-center font-bold"
             style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.05em' }}
           >
             DÉCOUVRIR NOS SERVICES
@@ -206,7 +206,7 @@ export function Hero() {
               boxShadow: '0 0 20px rgba(26, 158, 151, 0.15)',
             }}
             whileTap={{ scale: 0.95 }}
-            className="w-full md:w-auto border border-[#1A9E97]/40 text-[#67d8d0] px-20 py-6 rounded-xl transition-all duration-300 text-center font-bold"
+            className="w-full sm:w-auto border border-[#1A9E97]/40 text-[#67d8d0] px-5 sm:px-8 md:px-20 py-4 md:py-6 rounded-xl transition-all duration-300 text-center font-bold"
             style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.05em' }}
           >
             NOUS CONTACTER

@@ -60,35 +60,35 @@ export function Contact() {
 
   return (
     <section
-      className="py-20 px-4 md:px-16 relative overflow-hidden"
+      className="py-16 md:py-20 px-4 sm:px-6 md:px-16 relative overflow-hidden"
       id="contact"
       style={{
         background: 'linear-gradient(135deg, #1c3547 0%, #0D7A74 100%)',
       }}
     >
-      <div className="max-w-[1440px] mx-auto relative z-10 grid md:grid-cols-2 gap-20 items-center">
+      <div className="max-w-[1440px] mx-auto relative z-10 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <div>
           <h2
-            className="text-[#dfe3e4] mb-6"
-            style={{ fontFamily: 'var(--font-syne)', fontSize: '48px', fontWeight: 800, lineHeight: '56px' }}
+            className="text-[#dfe3e4] mb-5 md:mb-6"
+            style={{ fontFamily: 'var(--font-syne)', fontSize: 'clamp(32px, 9vw, 48px)', fontWeight: 800, lineHeight: '1.16' }}
           >
             Construisons ensemble l&apos;Afrique numérique de demain.
           </h2>
           <p
-            className="text-[#dfe3e4]/80 mb-12"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '18px', lineHeight: '1.7' }}
+            className="text-[#dfe3e4]/80 mb-8 md:mb-12"
+            style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(16px, 4vw, 18px)', lineHeight: '1.7' }}
           >
             Prêt à transformer vos données en levier de croissance stratégique ? Notre équipe est à votre écoute.
           </p>
-          <div className="space-y-6">
-            <div className="flex items-center gap-6">
-              <Mail className="text-[#67d8d0]" size={24} />
-              <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}>
+          <div className="space-y-5 md:space-y-6">
+            <div className="flex items-center gap-4 md:gap-6">
+              <Mail className="text-[#67d8d0] shrink-0" size={24} />
+              <span className="break-all" style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}>
                 fati.gp.stat@gmail.com
               </span>
             </div>
-            <div className="flex items-center gap-6">
-              <MapPin className="text-[#67d8d0]" size={24} />
+            <div className="flex items-center gap-4 md:gap-6">
+              <MapPin className="text-[#67d8d0] shrink-0" size={24} />
               <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', lineHeight: '1.7' }}>
                 Dakar, Senegal
               </span>
@@ -98,7 +98,7 @@ export function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-[#0f1415]/20 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-2xl"
+          className="bg-[#0f1415]/20 backdrop-blur-xl p-5 sm:p-8 rounded-2xl border border-white/10 shadow-2xl"
         >
           <div className="grid gap-6">
             <div>
@@ -155,8 +155,8 @@ export function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#1A9E97] text-white py-6 rounded-xl hover:bg-[#67d8d0] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ fontFamily: 'var(--font-syne)', fontSize: '24px', fontWeight: 700 }}
+              className="bg-[#1A9E97] text-white px-4 py-4 md:py-6 rounded-xl hover:bg-[#67d8d0] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ fontFamily: 'var(--font-syne)', fontSize: 'clamp(18px, 5vw, 24px)', fontWeight: 700 }}
             >
               {isSubmitting ? (
                 <>

@@ -18,8 +18,8 @@ const cardVariants = {
 
 export function About() {
   return (
-    <section className="bg-[#F0F4F5] text-[#0a0f10] py-24 px-4 md:px-16 overflow-hidden" id="about">
-      <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <section className="bg-[#F0F4F5] text-[#0a0f10] py-16 md:py-24 px-4 sm:px-6 md:px-16 overflow-hidden" id="about">
+      <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-center">
 
         {/* ── IMAGE COLUMN ── */}
         <motion.div
@@ -34,7 +34,7 @@ export function About() {
             <motion.div
               animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-[380px] h-[380px] rounded-full bg-[#1A9E97]/15 blur-3xl"
+              className="w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full bg-[#1A9E97]/15 blur-3xl"
             />
           </div>
 
@@ -42,7 +42,7 @@ export function About() {
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-            className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-[#1A9E97]/10"
+            className="relative w-full max-w-sm sm:max-w-md rounded-2xl overflow-hidden shadow-2xl border border-[#1A9E97]/10"
           >
             <img
               src="/about_workspace.png"
@@ -74,7 +74,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.7, type: 'spring', stiffness: 100 }}
             whileHover={{ y: -6, boxShadow: '0 20px 40px -10px rgba(26,158,151,0.4)' }}
-            className="absolute -bottom-6 -right-4 md:-right-8 bg-[#1A9E97] text-white p-5 rounded-2xl shadow-xl flex items-center gap-3 border border-white/10"
+            className="absolute -bottom-6 right-2 sm:-right-4 md:-right-8 bg-[#1A9E97] text-white p-4 sm:p-5 rounded-2xl shadow-xl flex items-center gap-3 border border-white/10"
           >
             <Globe2 size={32} className="flex-shrink-0" />
             <div>
@@ -104,7 +104,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.6 }}
-            className="inline-block text-[#1A9E97] mb-4 uppercase tracking-widest"
+          className="inline-block text-[#1A9E97] mb-3 md:mb-4 uppercase tracking-widest"
             style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', fontWeight: 700 }}
           >
             À Propos
@@ -115,7 +115,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[32px] md:text-[40px] mb-6 text-[#0a0f10] leading-tight"
+            className="text-[30px] md:text-[40px] mb-5 md:mb-6 text-[#0a0f10] leading-tight"
             style={{ fontFamily: 'var(--font-syne)', fontWeight: 700 }}
           >
             FATI - AI For Africa
@@ -126,8 +126,8 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 text-[#0a0f10]/70"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '18px', lineHeight: '1.75' }}
+            className="mb-8 md:mb-10 text-[#0a0f10]/70"
+            style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(16px, 4vw, 18px)', lineHeight: '1.7' }}
           >
             FATI est une startup panafricaine spécialisée en intelligence artificielle, data et
             transformation digitale. Notre mission est d&apos;utiliser la puissance des données et des
@@ -160,7 +160,7 @@ export function About() {
                   backgroundColor: 'rgba(26,158,151,0.07)',
                   boxShadow: '4px 0 0 0 #67d8d0',
                 }}
-                className="bg-[#353a3b]/5 p-6 border-l-4 border-[#1A9E97] rounded-r-xl transition-colors duration-300 cursor-default"
+                className="bg-[#353a3b]/5 p-5 sm:p-6 border-l-4 border-[#1A9E97] rounded-r-xl transition-colors duration-300 cursor-default"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 size={18} className="text-[#1A9E97] flex-shrink-0" />
